@@ -55,17 +55,17 @@ func (c *TargetsItem) Validate() error {
 		err = errors.Join(err, errors.New("labels is required"))
 	}
 
-	if c.RetryCount < 0 {
+	if !(c.RetryCount >= 0) {
 		err = errors.Join(err, errors.New("retry_count value must be greater than or equal to 0"))
 	}
-	if c.RetryCount > 10 {
+	if !(c.RetryCount <= 10) {
 		err = errors.Join(err, errors.New("retry_count value must be less than or equal to 10"))
 	}
 
-	if c.TimeoutSeconds <= 0 {
+	if !(c.TimeoutSeconds > 0) {
 		err = errors.Join(err, errors.New("timeout_seconds value must be greater than 0"))
 	}
-	if c.TimeoutSeconds >= 30 {
+	if !(c.TimeoutSeconds < 30) {
 		err = errors.Join(err, errors.New("timeout_seconds value must be less than 30"))
 	}
 

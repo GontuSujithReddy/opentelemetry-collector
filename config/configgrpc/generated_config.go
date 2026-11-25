@@ -257,11 +257,11 @@ func (c *ServerConfig) Validate() error {
 		err = errors.Join(err, inner_err)
 	}
 
-	if c.ReadBufferSize < 0 {
+	if !(c.ReadBufferSize >= 0) {
 		err = errors.Join(err, errors.New("read_buffer_size value must be greater than or equal to 0"))
 	}
 
-	if c.WriteBufferSize < 0 {
+	if !(c.WriteBufferSize >= 0) {
 		err = errors.Join(err, errors.New("write_buffer_size value must be greater than or equal to 0"))
 	}
 

@@ -44,26 +44,26 @@ func (c *BackOffConfig) Validate() error {
 		err = errors.Join(err, inner_err)
 	}
 
-	if c.InitialInterval < 0 {
+	if !(c.InitialInterval >= 0) {
 		err = errors.Join(err, errors.New("initial_interval value must be greater than or equal to 0"))
 	}
 
-	if c.MaxElapsedTime < 0 {
+	if !(c.MaxElapsedTime >= 0) {
 		err = errors.Join(err, errors.New("max_elapsed_time value must be greater than or equal to 0"))
 	}
 
-	if c.MaxInterval < 0 {
+	if !(c.MaxInterval >= 0) {
 		err = errors.Join(err, errors.New("max_interval value must be greater than or equal to 0"))
 	}
 
-	if c.Multiplier < 0 {
+	if !(c.Multiplier >= 0) {
 		err = errors.Join(err, errors.New("multiplier value must be greater than or equal to 0"))
 	}
 
-	if c.RandomizationFactor < 0 {
+	if !(c.RandomizationFactor >= 0) {
 		err = errors.Join(err, errors.New("randomization_factor value must be greater than or equal to 0"))
 	}
-	if c.RandomizationFactor > 1 {
+	if !(c.RandomizationFactor <= 1) {
 		err = errors.Join(err, errors.New("randomization_factor value must be less than or equal to 1"))
 	}
 

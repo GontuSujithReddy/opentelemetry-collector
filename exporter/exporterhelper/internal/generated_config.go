@@ -21,7 +21,7 @@ type TimeoutConfig struct {
 func (c *TimeoutConfig) Validate() error {
 	var err error
 
-	if c.Timeout < 0 {
+	if !(c.Timeout >= 0) {
 		err = errors.Join(err, errors.New("timeout value must be greater than or equal to 0"))
 	}
 

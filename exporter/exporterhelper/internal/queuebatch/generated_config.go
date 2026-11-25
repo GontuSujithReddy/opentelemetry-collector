@@ -43,15 +43,15 @@ func (c *BatchConfig) Validate() error {
 		err = errors.Join(err, inner_err)
 	}
 
-	if c.FlushTimeout <= 0 {
+	if !(c.FlushTimeout > 0) {
 		err = errors.Join(err, errors.New("flush_timeout value must be greater than 0"))
 	}
 
-	if c.MinSize < 0 {
+	if !(c.MinSize >= 0) {
 		err = errors.Join(err, errors.New("min_size value must be greater than or equal to 0"))
 	}
 
-	if c.MaxSize < 0 {
+	if !(c.MaxSize >= 0) {
 		err = errors.Join(err, errors.New("max_size value must be greater than or equal to 0"))
 	}
 
@@ -111,11 +111,11 @@ func (c *Config) Validate() error {
 		err = errors.Join(err, inner_err)
 	}
 
-	if c.QueueSize <= 0 {
+	if !(c.QueueSize > 0) {
 		err = errors.Join(err, errors.New("queue_size value must be greater than 0"))
 	}
 
-	if c.NumConsumers <= 0 {
+	if !(c.NumConsumers > 0) {
 		err = errors.Join(err, errors.New("num_consumers value must be greater than 0"))
 	}
 
@@ -157,11 +157,11 @@ func (c *PartitionConfig) Validate() error {
 		err = errors.Join(err, inner_err)
 	}
 
-	if c.CacheSize <= 0 {
+	if !(c.CacheSize > 0) {
 		err = errors.Join(err, errors.New("cache_size value must be greater than 0"))
 	}
 
-	if c.IdleTimeout <= 0 {
+	if !(c.IdleTimeout > 0) {
 		err = errors.Join(err, errors.New("idle_timeout value must be greater than 0"))
 	}
 

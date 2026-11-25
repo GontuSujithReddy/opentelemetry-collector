@@ -205,28 +205,28 @@ import (
 
 {{ define "minimumValidator" -}}
     {{ $minimum := .Rules.Minimum -}}
-    if {{ template "fieldValue" . }} < {{ $minimum }} {
+    if !({{ template "fieldValue" . }} >= {{ $minimum }}) {
         err = errors.Join(err, errors.New("{{ .FieldName }} value must be greater than or equal to {{ $minimum }}"))
     }
 {{- end }}
 
 {{ define "maximumValidator" -}}
     {{ $maximum := .Rules.Maximum -}}
-    if {{ template "fieldValue" . }} > {{ $maximum }} {
+    if !({{ template "fieldValue" . }} <= {{ $maximum }}) {
         err = errors.Join(err, errors.New("{{ .FieldName }} value must be less than or equal to {{ $maximum }}"))
     }
 {{- end }}
 
 {{ define "exclusiveMinimumValidator" -}}
     {{ $exclMin := .Rules.ExclusiveMinimum -}}
-    if {{ template "fieldValue" . }} <= {{ $exclMin }} {
+    if !({{ template "fieldValue" . }} > {{ $exclMin }}) {
         err = errors.Join(err, errors.New("{{ .FieldName }} value must be greater than {{ $exclMin }}"))
     }
 {{- end }}
 
 {{ define "exclusiveMaximumValidator" -}}
     {{ $exclMax := .Rules.ExclusiveMaximum -}}
-    if {{ template "fieldValue" . }} >= {{ $exclMax }} {
+    if !({{ template "fieldValue" . }} < {{ $exclMax }}) {
         err = errors.Join(err, errors.New("{{ .FieldName }} value must be less than {{ $exclMax }}"))
     }
 {{- end }}
